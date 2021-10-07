@@ -10,102 +10,80 @@
     <h1>Pass phrase by Dhana sri kuchi</h1>
 </header>
 <h2>Validate input using javascript</h2>
-
 <form>
-    <label for="form1_secret"></label>Enter the secret phrase </label>
-    <input type ="password" id="form1_secret" name="form1_secret"  value="Let me in"> <br>
+    <div class="form-group">
+    <label for="form1_age">Enter the secret phrase </label>
+    <input class="form-control" type ="password" id="secret_phrase" name="form1_age" value="Let me in"> <br>
+</div>
 
-    <label for="form1_phrase">Enter a phrase</label>
-    <input type ="text" id="form1_phrase" name="form1_phrase" autofocus> <br>
-
-    <input type="button" onclick="processPhrase()" value="Check the phrase">
+<div class="form-group">
+    <label for="form1_nick">Enter a phrase </label>
+    <input class="form-control" type ="text" id="phrase" name="form1_nick" autofocus> <br>
+</div>
+    <input class="btn-success" type="button" onclick="processPhrase()" value="Check the phrase">
+    
 </form>
 
 
-<p id="result"> </p>
+<p id="result">This text will be replaced </p>
+</div>
 
-<script> 
+<div class="container">
+<img src="cat.jpg" id="images" onclick="newImage()" height="200" width="200">
+</div>
 
-function processPhrase (){
-    console.log("Validate input using javascript");
-    var correct = 0;
-    var wrong = 0;
-    secret = document.getElementById("form1_secret").value;
-    phrase = document.getElementById("form1_phrase").value;
-    out = document.getElementById("result");
-    if(phrase === secret)
-    {
-        correct = correct+1;
-        alert("Access allowed");
-        out.innerHTML = "correct count: "+correct;
-    }
-    else{
-        wrong = wrong +1;
-        alert("Access denied");
-        out.innerHTML = "Wrong count: "+wrong;
-    }       
-    
-}
-</script>
-<h2>Parrots</h2>
-<p id="result">The image is about beatiful parrort</p>
-<br>
-    <script> 
-        var correct = 0
-        var wrong = 0
-        
-        
-        function processPhrase (){
-            console.log("Getting form values")
-            secret = document.getElementById("form1_secret").value
-            guess = document.getElementById("form1_guess").value
-            
-            //confirmed = confirm("Are these the values? "+secret+" and "+guess)
-             //result = secret.localeCompare(guess);
-            out = document.getElementById("result")
-            
-            if(secret == guess){
-                correct ++
-                alert("Access allowed!")
-                out.innerHTML = "correct score"+correct
-            } else {
-                wrong++
-                alert ("Access denied!")
-                out.innerHTML ="wrong score"+ wrong
-            }
-            out.innerHTML = "correct count"+ correct +" ; wrong count "+ wrong
+<script>
+
+var  usingImage = 1;
+    function newImage(){
+        switch(usingImage){
+            case 1:
+            document.getElementById("images").src="cat.jpg";
+            usingImage++;
+            break;
+
+            case 2:
+            document.getElementById("images").src="dog.jpg";
+            usingImage++;
+            break;
+
+            case 3:
+            document.getElementById("images").src="kangroo.jpg";
+            usingImage++;
+            break;
         }
-        </script>
-        <div class ="container">
-            <img src ="download5.jpg" width="200" height="200"  onclick="newImage()" id="image" >
-            <br>
-            <!-- <input type="button" onclick="rotateImage()" id="image"> -->
-            <script>
-                var usingImage = 1
-                function newImage(){
-                    switch(usingImage ){
-                        case 1:
-                          //  var img = document.createElement("img")
-                            //img.src = "cat.jpg"
-                            document.getElementById("image").src = "cat.jpg"
-                            usingImage = 2
-                            break
-                        case 2:
-                            //var img1 = document.createElement("img1")
-                            //img1.src = "dog.jpg"
-                            document.getElementById("image").src = "dog.jpg"
-                            usingImage = 3
-                            break
-                        case 3:
-                            document.getElementById("image").src = "kangroo.jpg"
-                            usingImage = 1
-                            break
-                        }
+    }
+
+
+var correct=0
+    var wrong=0
+
+    function processPhrase (){
+        console.log("Getting form values")
+        sphrase = document.getElementById("secret_phrase").value
+        phrase = document.getElementById("phrase").value
         
-                }
-            </script>
-        
-        </div>
+        out = document.getElementById("result")
+        if(sphrase == phrase){
+            correct = correct +1
+            alert("Access is allowed")
+            out.innerHTML = "Correct:" +correct
+        } else {
+            wrong = wrong +1
+            alert("Access is denied")
+            out.innerHTML = "Wrong:" +wrong
+        }
+
+        if( wrong >=3){
+                locked();
+            }
+    }
+
+    function locked(){
+            alert("account locked")
+        }
+    
+</script>
 
 </body>
 </html> 
